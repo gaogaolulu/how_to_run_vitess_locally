@@ -1,6 +1,7 @@
 /***
 there are several options(onl linux here) we can choose for running vitess:  Redhat, Oracle Linux, CentOS, Debian, Ubuntu. 
 for me, the company which I am woring with only uses Oracle Linux, so I use it ot setup Vitess. 
+please use root to finish following steps.  
 ****/
 
 Step 1. 
@@ -74,4 +75,22 @@ generate cfg file
 grub2-mkconfig -o /boot/grub2/grub.cfg
 
 step 5. 
+/****
+disable selinux , fire wall 
+****/
+systemctl disable  firewalld
+systemctl stop firewalld
+
+vi /etc/selinux/config
+SELINUX=disabled
+
+
+step 6. 
+/****
+add user:  mysql ,  due to PAM , we must use login system with GUI, and add user manually. 
+****/
+login system with GUI , and add user mysql 
+
+step 7. 
 reboot 
+
