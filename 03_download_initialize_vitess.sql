@@ -9,6 +9,8 @@ in this period, we need to modify :
 /xxxx/kubernetes/vitess-release-8cdd456/config/mycnf/master_mysql56.cnf
 /xxxx/kubernetes/vitess-release-8cdd456/config/mycnf/replica.cnf
 
+and we need to download go  and install it. 
+
 also, I think vitess should support MySQL 8.0 soon....
 user: mysql 
 ****/
@@ -76,3 +78,14 @@ enforce_gtid_consistency = ON
 log_bin= mysql-bin
 log_slave_updates = ON 
 
+step 6. 
+/****
+downloading go and installing it ...., the target directory is :  /usr/local/go/bin 
+user: root 
+
+****/
+wget https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.13.1.linux-amd64.tar.gz
+
+vi /etc/profile 
+export PATH=$PATH:/usr/local/go/bin
