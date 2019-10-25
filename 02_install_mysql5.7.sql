@@ -2,6 +2,7 @@
 Vitess support MySQl 5.6, 5.7 and 8.0 I guess; however, I suggest to use MySQL 5.7 to work with Vitess because MySQL 5.7 is easier to use(I will explain it later). 
 after I go through whole installation process, I find there are a lot of detail info hidden. 
 we need to install MySQL 5.7 rpms and setup with semi-sync replication parameters to confirm there is no error when Vitess startup multi MySQl 5.7 databases
+then shutdown it for next step. 
 https://vitess.io/docs/get-started/local/
 ****/
 
@@ -48,6 +49,38 @@ initialize mysql and get temp root password
 user: mysql
 ****/
 
-
 /usr/sbin/mysqld --initialize --user=mysql  --basedir=/usr   --datadir=/var/lib/mysql    --socket=/var/lib/mysql/mysql.sock
+
+step 4. 
+/****
+get temp password from mysqld.log 
+user: mysql
+****/
+cat /var/log/mysqld.log  | grep temporary
+
+then you can find the temporary password, ex it is : abcd1234 
+
+step 5.
+/****
+startup database , 
+user: root 
+****/
+service mysqld start  
+
+step 6. 
+/****
+login mysql to confirm everything is fine .
+user: mysql
+****/
+mysql -uroot -hlocalhost -p'abcd1234'
+
+then you should login mysql database . 
+
+
+step 7.
+/****
+shutdown mysql 
+****/
+service mysqld stop  
+
 
